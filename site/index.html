@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentina Lapolla</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- vlnet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/neuton.css">
+    <link rel="stylesheet" href="css/qunit-1.11.0.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- CKEditor -->
+    <script src="js/lib/ckeditor/ckeditor.js"></script>    
+  </head>
+  <body>
+    <!-- page content -->
+    <!-- Fixed navbar -->
+    <div id="fixed-nav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">VLnet</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/#index">Index</a></li>
+            <li><a href="/#admin">Admin</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- App -->
+    <div id="app-wrapper" class="container"></div>    
+
+    <!-- Index template -->
+    <script id="indexTpl" type="text/template">
+      <header>
+        <h1 id="logo">Valentina Lapolla</h1>
+      </header>
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+          <nav id="main-nav"></nav>
+        </div>
+        <div class="col-md-9">
+          <section id="content"></section>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <div class="row">
+          <div class="col-md-8">
+            <section id="footer-left">
+              Valentina Lapolla<br>
+              <a href="mailto:valentina.lapolla@gmail.com" title="email me">valentina.lapolla[at]gmail.com</a>
+            </section>
+          </div>
+          <div class="col-md-4 pull-right">
+            <section id="footer-right">
+              site development: minimalg.it
+            </section>
+          </div>
+        </div>
+      </footer>
+    </script>    
+    <!-- /Index template -->
+    <!-- Menu template -->
+    <script id="menuTpl" type="text/template">
+      <section id="works">
+        <header class="lavori">Lavori</header>
+        <ul class="lavori nav"></ul>
+        <ul class="filter">
+          <li><a class="filter" data-id="all" href="#filters/all">tutti</a></li>
+          <li><a class="filter" data-id="foto" href="#filters/foto">fotografia</a></li>
+          <li><a class="filter" data-id="installazione" href="#filters/installazione">installazioni</a></li>
+          <li><a class="filter" data-id="video" href="#filters/video">video</a></li>
+          <li><a class="filter" data-id="performance" href="#filters/performance">performance</a></li>
+          <li><a class="filter" data-id="preview" href="#filters/preview">preview</a></li>          
+        </ul>
+      </section>
+      <section id="preview">
+        <hr>
+        <header>Preview</header>
+        <ul class="preview nav"></ul>
+      </section>
+      <section class="portfolio other">
+        <hr>
+        <header>
+          <a data-toggle="collapse" data-target="#portfolio" title="Portfolio">Portfolio</a>
+        </header>
+        <div id="portfolio" class="collapse"></div>
+      </section>
+      <section class="contatti other">
+        <hr>
+        <header>
+          <a data-toggle="collapse" data-target="#contatti" title="Contatti">Contatti</a>
+</header>
+        <div id="contatti" class="collapse">
+          <a href="mailto:valentina.lapolla@gmail.com" title="email me">
+            valentina.lapolla[at]gmail.com
+          </a>
+        </div>
+      </section>
+    </script>
+    <!-- /Menu template -->
+    <!-- Work template -->
+    <script id="workTemplate" type="text/template">
+      <h2><%= title %></h2>      
+      <p class="technique"><%= technique %></p>
+      <p class="year"><%= year %></p>
+      <div class="flexslider">
+        <ul class="slides">
+          <% if ( video!='nd' ) { %>
+            <li><iframe id="player_1" src="//player.vimeo.com/video/<%= video %>?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></li>
+          <% } %>
+          <% if ( video=='nd' ) {
+              _.each(images, function(image) { %>
+                <li>
+                  <img class="image" src="<%= image.url %>" />
+                <% if ( typeof(image.caption)!=="undefined" ) { %>
+                  <p class="caption"><%= image.caption %>                  
+                <% } %>
+                </li>
+              <% }); %>
+          <% } %>
+        </ul>
+      </div>
+      <div class="flex-controls-container"></div>
+      <p class="text"><%= text %></p>
+    </script>
+    <!-- /Work template -->
+    <!-- Admin template -->
+    <script id="adminTpl" type="text/template">
+      <header>VLnet admin page</header>
+      <section id="admin-panel">
+        <section id="add-work">
+          <button id="btn-add-work" type="button" class="btn btn-primary btn-lg btn-block">Aggiungi un nuovo lavoro</button>
+          <section id="add-work-content"></section>
+        </section>
+        <section id="list-works">
+          <button id="btn-list-works" type="button" class="btn btn-warning btn-lg btn-block">Elenco lavori</button>
+          <section id="list-works-content">
+            <ul id="works-index"></ul>
+          </section>
+        </section>
+        <section id="static-pages">
+          <button id="btn-static-pages" type="button" class="btn btn-success btn-lg btn-block">Pagine statiche</button>
+          <section id="static-pages-content"></section>
+        </section>
+      </section>
+      <footer>VLnet admin page footer</footer>
+    </script>
+    <!-- /Admin template -->
+    <!-- AddEditWork template -->
+    <script id="addEditWorkTpl" type="text/template">
+      <form id="addEditWorkForm-header">
+        <div>
+          <!-- titolo -->
+          <label for="title">Titolo </label>
+          <input id="title" class="btn btn-default" type="text" name="title" placeholder="titolo del lavoro" <% if ( title!="no title" ) { %> value="<%= title %>" <% } %> />
+          <!-- titolo url -->
+          <label for="title_url">Url titolo </label>
+          <input id="title_url" class="btn btn-default" type="text" name="title_url" placeholder="titolo del lavoro" <% if ( title!="no title" ) { %> value="<%= title_url %>" <% } %> />
+          <!-- status -->
+          <hr>
+          <label for="type">Status</label>
+          <select id="status" class="form-control" name="status">
+            <option value="active" selected>attivo</option>
+            <option value="disabled">disabled</option>
+          </select>
+          <!-- media -->
+          <hr>
+          <label for="media">Media</label>
+          <select id="media" class="form-control" name="media">
+            <option value="foto" <% if (media=="foto") { print("selected") } %> >foto</option>          
+            <option value="installazione" <% if (media=="installazione") { print("selected") } %> >installazione</option>
+            <option value="video" <% if (media=="video") { print("selected") } %> >video e performance</option>
+            <option value="performance" <% if (media=="performance") { print("selected") } %> >performance</option>
+            <option value="preview" <% if (media=="preview") { print("selected") } %>>preview</option>
+          </select>
+        </div>
+      </form>
+      <!-- Immagini -->
+      <!-- uploader -->
+      <hr>          
+      <label>Immagini*</label><br>
+      <small style="display: block; margin-bottom: 1em">*se si inseriscono immagini non si possono inserire video e viceversa</small>
+      <form id="upload-form" action="/api/files/upload" method="post" enctype="multipart/form-data">
+        <div class="upload-add">
+          <label for="upload-add-new">seleziona un file</label>
+          <input id="upload-add-new" type="file" class="upload-file btn btn-default" name="file-1" />
+          <input id="upload-upload" type="submit" class="btn btn-primary" value="upload" />
+        </div>
+      </form>
+      <form id="upload-form-index"></form>
+      <div class="clear" />
+      <table class="upload-index"></table>
+      <div id="upload-add-another">
+        <label for="upload-add-another-btn">Aggiungi un file</label><br>
+        <button id="upload-add-another-btn" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> file</button>
+      </div>
+      <!-- /uploader -->
+      <form id="addEditWorkForm" enctype="multipart/form-data" method="post">
+        <div>
+          <!-- Video -->
+          <hr>
+          <label for="year">Video</label>
+          <input id="video" class="btn btn-default" type="text" name="video" placeholder="video id number" <% if ( typeof(video)!=="undefined" ) { %> value="<%= video %>" <% } %> />
+          <!-- Anno -->
+          <hr>          
+          <label for="year">Anno</label>
+          <input id="year" class="btn btn-default" type="text" name="text" placeholder="2013" <% if ( typeof(year)!=="undefined" ) { %> value="<%= year %>" <% } %> />
+          <!-- Testo -->
+          <hr>          
+          <label for="text">Testo</label>
+          <textarea id="text" type="text" name="text-edit"><% if ( typeof(text)!=="undefined" ) { %> <%= text %> <% } else { print("Inserire qui il testo..."); } %></textarea>
+          <!-- tecnica -->
+          <hr>
+          <label for="technique">Tecnica</label>
+          <input id="technique" class="btn btn-default" type="text" placeholder="tecnica" <% if ( typeof(technique)!=="undefined" ) { %> value="<%= technique %>" <% } %> />
+          <!-- Mostra in prima pagina -->
+          <hr>          
+          <label for="displayFront">Mostra in prima pagina</label>
+          <input class="btn btn-default" type="checkbox" id="displayFront" name="displayFront" <% if ( typeof(displayFront)!=="undefined" ) { if (displayFront) { print('checked'); } } %>/> mostra in prima pagina<br/>
+          <!-- submit -->
+          <hr style="margin-top:1em">
+          <button class="cancel btn btn-primary">Annulla modifiche</button>
+          <input id="update" class="btn btn-primary"  type="submit" value="Aggiorna"/>
+        </div>
+      </form>
+    </script>
+    <!-- /AddEdit template -->
+    <!-- List works template -->    
+    <script id="tpl-admin-list-works" type="text/template">
+      <header>
+        <span class="glyphicon glyphicon-sort"></span>&nbsp;
+        <a href="#api/works/<%= title_url %>">
+        <strong><%= title %></strong>, <span class="admin-list-works subtitle">(<%= year %>)</span>
+        </a>
+      </header>
+      <section>
+        <button class="list-works view btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span> visualizza</button>
+        <button class="list-works edit btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> modifica</button>
+        <button class="list-works delete btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> rimuovi</button>
+      </section>
+    </script>
+    <!-- /List works template -->    
+    <!-- Login template -->
+    <script id="LoginTpl" type="text/template">
+      <section class="login">
+        <form id="login-form" action="/login" method="post">
+          <header class="login-content">
+            <h4>VLnet Login page</h4>
+          </header>
+          <section class="login-content">
+            <div>
+              <label for="login-username">Username</label>
+              <input id="login-username" type="text" class="btn btn-default"  name="username" placeholder="username"/>
+            </div>
+            <div>
+              <label for="login-password">Password</label>
+              <input id="login-password" type="password" class="btn btn-default" name="password" placeholder="password"/>
+            </div>
+          </section>
+          <footer>
+            <input id="login-submit" type="submit" class="btn btn-primary" value="Login"/>
+            <button id="login-cancel" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </footer>
+        </form>
+      </section>
+    </script>
+    <!-- /Login template -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <!-- vlnet dependencies -->
+    <script src="js/lib/jquery.form.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="js/lib/jquery.flexslider.js"></script>
+    <script src="js/lib/underscore-min.js"></script>
+    <script src="js/lib/backbone-min.js"></script>
+    <script src="js/scripts.js"></script>
+<!--    <script src="js/lib/qunit-1.11.0.js"></script> -->
+<!--    <script src="js/tests/test.js"></script> -->
+    <!-- vlnet core -->
+    <script src="js/models/work.js"></script>
+    <script src="js/collections/portfolio.js"></script>
+    <script src="js/views/work.js"></script>
+    <script src="js/views/adminWork.js"></script>
+    <script src="js/views/backend.js"></script>
+    <script src="js/views/frontend.js"></script>    
+    <script src="js/views/menu.js"></script>    
+    <script src="js/views/menuItem.js"></script>
+    <script src="js/views/login.js"></script>
+    <script src="js/views/addEditWork.js"></script>
+    <script src="js/routers/router.js"></script>    
+    <script src="js/app.js"></script>
+  </body>
+</html>

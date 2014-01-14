@@ -1,0 +1,489 @@
+/**
+  * Colors
+  */
+@dark-green: rgb(83,108,87);
+@gray: rgb(128,128,128);
+@light-gray: rgb(230,230,230);
+@black: rgb(51,51,51);
+
+/**
+  * Fonts and typography
+  */
+.serif {
+  font-size: 120%;
+  line-height: 1.2em;
+  font-family:  'neutonregular', serif;
+  color: rgb(50,50,50);
+  strong, h1, h2, h3, h4 {
+    font-family: 'neutonbold';
+  }
+  h1 { font-size: 160% }
+}
+.sans {
+  font-family:  arial, sans-serif;
+  color: rgb(70,70,70);
+  strong, h1, h2, h3, h4 {
+    font-family:  arial, sans-serif;
+  }
+  font-size: 100%;
+}
+h1, h2, h3, h4 {
+  padding: 0;
+  margin: 0;
+}
+
+/**
+ * Links
+ */
+.link {
+  margin: 0;
+  padding: 0;
+  color: black;
+  text-decoration: none;        
+  border-bottom: 1px solid white;
+  &:hover {
+    border-bottom: 1px dotted;      
+    text-decoration: none;        
+  }  
+}
+
+/**
+ * Rounded corners
+ */
+.rounded(@radius: 4px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+/**
+ * Document styles
+ */
+img { max-width:100%; }
+dl { margin: 0 }
+
+/**
+ * Utils
+ */
+.hide { display: none }
+.clear { clear: both }
+.hidden { display: none; }
+
+
+/**
+ * Resets
+ */
+input.btn {
+  -webkit-user-select: auto;
+}
+
+/**
+ * Body and overall settings
+ */
+body {
+  line-height: 1.125em; // defaults to 18px
+/*
+  commented out when started using bootstrap
+  color: black;
+	font-family: arial;
+	font-size: 100%; // defaults to 16px
+  line-height: 1.125em; // defaults to 18px
+  background-color: @light-gray;
+*/
+}
+
+div#app-wrapper {
+  margin-top: 1em; //60px;
+}
+div#app-wrapper.index {
+  .serif;    
+}
+
+
+/**
+ * Index
+**/
+section#content {
+  min-height: 40em;
+  p {
+    text-align: justify;
+  }
+  p.technique {
+    margin: 0;
+  } 
+}
+
+/**
+ * Navigation bar
+**/
+section#preview {
+  display: none;
+}
+
+.circle {
+  -moz-border-radius: 50px;
+   -webkit-border-radius: 50px;
+   border-radius: 50px;
+   border: none;
+   width:8px;
+   height:8px;   
+   background-color: gray
+}
+ 
+#fixed-nav {
+  display: none; 
+}
+nav#main-nav {
+  header.lavori {
+    margin-top: 0.5em;
+    color: #333333;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul.lavori.nav {
+    width: 90%;
+    line-height: 1em;
+    li {
+      margin: 0 6px 0 0; 
+      display: inline-block; 
+      zoom: 1; 
+      *display: inline;
+      a {
+        .circle;
+        display: inline;
+        color: @gray;
+        width: 8px; height: 8px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); -moz-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); -o-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); box-shadow: inset 0 0 3px rgba(0,0,0,0.3); 
+        &:hover {
+          background: black;
+        };
+      }
+      a.active {
+        background: black;
+      }
+    }
+  }
+  ul.filter {
+    margin-top: 0.5em;
+    line-height: 1em;
+    li {
+      display: inline;
+      margin-right: 4px;
+      a {
+        .link;
+        font-size: 80%; 
+        color: @gray;
+      }
+      a.active {
+        color: black;
+      }
+    }
+  }
+  a {
+    .link;
+    background: rgba(255,255,255,1);
+    color: @black;
+    &:hover {
+      color: rgb(127,127,127);
+    }          
+  }
+  header {
+    margin-bottom: 0.5em;
+    font-weight: bolder;
+    color: rgb(90,90,90);    
+  }
+  section.other {
+    div {
+      font-size: 87.5%;
+      a {
+        display: inline;
+      }
+    }
+  }
+  section.portfolio { display: none; }
+} 
+
+/**
+ * Login
+**/
+section.login {
+  width:30%;
+  margin: 0 auto;
+  margin-top: 2em;
+  section.login-content div {
+    margin-top: 0.5em;
+  }
+  footer {
+    margin-top: 1em;
+  }
+  input {
+    width: 100%;
+  }
+  input[type="submit"], button {
+    width: 25%;
+  }
+}
+
+
+/**
+ * Footer
+ */
+footer {
+  font-size: 90%;
+  color: rgb(90,90,90);
+  margin-bottom: 1.111111em; /* 1em~ */
+  a {
+    .link;
+    color: rgb(90,90,90);
+  } 
+} 
+#footer-right {
+  text-align: right; 
+}
+
+
+/**
+  * Admin
+  */
+form {
+  margin: 0;
+  input {
+    display: block;
+    .rounded(4px);
+    width: 30%;
+    margin-bottom: 1em;
+    &:last-child {
+      margin-bottom: 0
+    }
+  }
+  input[type='submit'] {
+    width: auto;
+  }
+  select.form-control { 
+    width: 30%;
+  }
+  textarea {
+    display: block;
+    width: 30%;
+    height: 5em;
+    margin-bottom: 1em;
+  }
+  label {
+    display: block;
+    .clear;
+  }
+}
+
+article { 
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 1em;
+}
+section#content article {
+  padding: 0;
+  p {
+//    text-indent: 2em;
+  }
+}
+
+section#admin-panel {
+  .sans;
+}
+section#add-work,
+section#list-works,
+section#static-pages {
+  label {
+    margin-top: 1em;
+    &:first-child {
+      margin-top: 0;
+    };
+  }
+  section {
+    margin: 0.5em 0;
+    padding: 1em 1%;
+    .rounded(4px);
+    background-color: #e6e6e6;
+  }
+}
+
+section#add-work-content,
+section#static-pages-content {
+  display: none;
+}
+
+button.btn-block {
+  margin-top: 0.5em;
+}
+
+
+input.btn {
+  text-align: left;
+}
+input[type="checkbox"] {
+  width: auto !important;
+  margin-right: 0.5em;
+}
+input#submit {
+  margin-top: 1em;
+}
+input#displayFront {
+  margin: 0;
+  margin-right: 0.5em;
+}
+input.upload-file {
+  border: solid rgb(184,184,184) 1px;
+  float: left;
+  margin-right: 6px;
+}
+button#add-more-images {
+  display: block;
+  clear: both;
+}
+section#admin-list-works button.list-works {
+  margin-top: 0.5em;
+}
+ul#works-index {
+  list-style-type: none;
+  li.admin-list {
+    background-color: #f7f7f7; //#e6e6e6;
+    .rounded(4px);
+    padding: 0.5em 1%;
+    margin-bottom: 0.5em;
+    &:last-child {
+      margin-bottom: 0;
+    };
+    border: solid rgb(184,184,184) 1px;
+    a {
+      color: black;
+    }
+    h2, p {
+      display: none;
+    }
+    h2 {
+      margin: 0.5em 0;
+      padding-top: 0.5em;
+      border-top: dotted rgb(184,184,184) 1px;
+    }
+    p {
+      margin-bottom: 1em;
+    }
+    button {
+      margin-top: 0;
+    }
+    .list-works {
+      font-weight: bolder;
+    }
+    hr {
+      border-top: dotted rgb(184,184,184) 1px;
+    }
+    header {
+      line-height: 1.428571429em;
+      float: left;
+      width: 50%;
+    }
+    section {
+      display: inline;
+      background-color: #f7f7f7; //#e6e6e6;
+      padding: 0;
+    }
+    span.subtitle {
+      font-weight: lighter;
+    }
+    span.glyphicon-sort {
+      color: gray;
+      cursor: move;
+      font-size: 90%;
+    }
+  }
+}
+i.icon-ok {
+  color: #3276b1;
+  padding-left: 4px;
+}
+div.form-wrapper {
+  .rounded(4px);
+  border: solid rgb(184,184,184) 2px;
+  padding: 10px; 
+  margin-bottom: 1em;
+}
+/* file uploader */
+.clear { clear: both; }
+input#upload-add-new { float: left; margin-right: 0.5em }
+div#upload-add-another {
+  display: none;
+}
+table.upload-index {
+  padding: 0;
+  margin: 1em 0;
+  tr {
+    margin: 0.5em 0;
+    border-top: 1px solid @light-gray;
+    border-bottom: 1px solid @light-gray;
+  }
+  td {
+    padding-right: 6px;
+  }
+  a {
+    color: black;
+    border-bottom: 1px dotted black;
+    text-decoration: none;
+    &:hover {
+      border-bottom: none;
+    };    
+  }
+  button {
+    margin-left: 1em;
+  }
+}
+img.ajax-loader {
+  margin-left: 6px;
+}
+input.caption {
+  margin-left: 10px;
+}
+
+ 
+/**
+ * CKeditor
+ */
+#cke_text {
+  width: 100%;
+}
+
+/**
+ * Flexslider
+ */
+div.flexslider {
+  border: none;
+  box-shadow: none;
+  margin-bottom: 2em;
+}
+.flexslider {
+  height: auto !important; // 324px
+  width: 70%;
+  max-height: 486px;
+}
+.flexslider .slides img { 
+  height: auto !important; // 324px
+  max-height: 486px;
+  float: left;
+  margin-right: 10px;
+}
+.flexslider .flex-control-nav {
+  position: relative; // was absolute
+  width: 75%;//  width: auto;
+  text-align: left;
+  bottom: -0.5em;
+  left: 4px; /* right: 4px; */
+  li {
+    margin: 0 2px;
+    a {
+      width: 8px;
+      height: 8px;
+    }
+  }
+}

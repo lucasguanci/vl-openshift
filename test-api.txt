@@ -1,0 +1,100 @@
+jQuery.get( '/api/works/', function( data, textStatus, jqXHR ) {
+    console.log( 'Get response:' );
+    console.dir( data );
+    console.log( textStatus );
+    console.dir( jqXHR );
+});
+
+jQuery.get( '/api/works/5196280cb148d79906000001', function( data, textStatus, jqXHR ) {
+    console.log( 'Get response:' );
+    console.dir( data );
+    console.log( textStatus );
+    console.dir( jqXHR );
+});
+
+
+jQuery.post( '/api/works', {
+    'title': 'untitled#23',
+    'year': '2012',
+    'text': 'hen call the save function on the BookModel passing in a callback in the same way as with the previous get route. ',
+    'media': 'foto',
+    'status': 'active',
+    'images': ['img/placeholder.png']
+}, function(data, textStatus, jqXHR) {
+    console.log( 'Post response:' );
+    console.dir( data );
+    console.log( textStatus );
+    console.dir( jqXHR );
+});
+
+jQuery.ajax({
+    url: '/api/works/526f58dcf4d49dd20f000001',
+    type: 'PUT',
+    data: {
+        'title': 'super mario',
+    },
+    success: function( data, textStatus, jqXHR ) {
+        console.log( 'Post response:' );
+        console.dir( data );
+        console.log( textStatus );
+        console.dir( jqXHR );
+    }
+});
+
+jQuery.ajax({
+    url: '/api/works/527288798ba403e119000001',
+    type: 'DELETE',
+    success: function( data, textStatus, jqXHR ) {
+        console.log( 'Post response:' );
+        console.dir( data );
+        console.log( textStatus );
+        console.dir( jqXHR );
+    }
+});
+
+
+
+***
+
+app.post('/api/works/:id', function(req,res) {
+  console.log('ci sono');
+  var id = req.params.id;
+  return Work.findById(id, function(err,work) {
+    work.title = req.body.title;
+    work.image = req.body.image;
+    work.year = req.body.year;
+    work.text = req.body.text;
+    work.technique = req.body.technique;
+    return work.save(function(err,work) {
+      if( !err ) {
+        console.log(work.title+'has been updated.');
+      } else {
+        console.log(err);
+      }    
+      return res.send(work);
+    });
+  });
+});
+
+
+jQuery.post( '/test', {}, function(data, textStatus, jqXHR) {
+    console.log( 'Post response:' );
+    console.dir( data );
+    console.log( textStatus );
+    console.dir( jqXHR );
+});
+
+jQuery.post( '/api/works', {
+    'title': 'untitled#23',
+    'year': '2012',
+    'text': 'hen call the save function on the BookModel passing in a callback in the same way as with the previous get route. ',
+    'media': 'foto',
+    'status': 'active',
+    'images': [{'url':'img/placeholder.png'}]
+  }, function(data, textStatus, jqXHR) {
+    console.log( 'Post response:' );
+    console.dir( data );
+    console.log( textStatus );
+    console.dir( jqXHR );
+  }
+);
