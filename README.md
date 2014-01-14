@@ -163,6 +163,10 @@ __the project has moved back to a Sites/os/vl__
 - fixed #admin, click on cancel
 - fixed aggiungere _role_ agli utenti per accesso preview ma non admin
 
+# 14 gennaio
+__new project home, ~/Sites/os/valentinalapolla__
+
+
 # TODO
 - wrong login error message
 - images upload: avoid duplicating ajax calls upon multiple clicks
