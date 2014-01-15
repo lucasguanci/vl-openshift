@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  // start Bootstrap tooltip
+  // $('a[data-toggle=tooltip]').tooltip();
   $("#btn-add-new").bind('click', function() {
     $('#addWork').toggle();
   });

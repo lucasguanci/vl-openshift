@@ -44,11 +44,13 @@ var app = app || {};
       // select a random work
       // var work = this.pickRndWork();
       // no work will be shown when var work = "none";
-      var work = this.collection.at(0);
+      var work = "none";      
 			// render menu
       this.renderMenu(work);
+      // display first work
+      // var work = this.collection.at(0); 
 			// render work
-			this.renderWork(work);
+			// this.renderWork(work);
 		},
     renderStatic: function() {
       this.$el.html( this.template() );

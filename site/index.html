@@ -53,7 +53,7 @@
     <!-- Index template -->
     <script id="indexTpl" type="text/template">
       <header>
-        <h1 id="logo">Valentina Lapolla</h1>
+        <h1 id="logo"><a href="index.html" title="Valentina Lapolla">Valentina Lapolla</a></h1>
       </header>
       <hr>
       <div class="row">
@@ -123,28 +123,30 @@
     <!-- /Menu template -->
     <!-- Work template -->
     <script id="workTemplate" type="text/template">
-      <h2><%= title %></h2>      
-      <p class="technique"><%= technique %></p>
-      <p class="year"><%= year %></p>
-      <div class="flexslider">
-        <ul class="slides">
-          <% if ( video!='nd' ) { %>
-            <li><iframe id="player_1" src="//player.vimeo.com/video/<%= video %>?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></li>
-          <% } %>
-          <% if ( video=='nd' ) {
-              _.each(images, function(image) { %>
-                <li>
-                  <img class="image" src="<%= image.url %>" />
-                <% if ( typeof(image.caption)!=="undefined" ) { %>
-                  <p class="caption"><%= image.caption %>                  
-                <% } %>
-                </li>
-              <% }); %>
-          <% } %>
-        </ul>
+      <div itemscope itemtype="http://schema.org/CreativeWork">      
+        <h2 itemprop="name"><%= title %></h2>      
+        <p class="technique" itemprop="genre"><%= technique %></p>
+        <p class="year" itemprop="datePublished"><%= year %></p>
+        <div class="flexslider">
+          <ul class="slides">
+            <% if ( video!='nd' ) { %>
+              <li><iframe id="player_1" src="//player.vimeo.com/video/<%= video %>?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></li>
+            <% } %>
+            <% if ( video=='nd' ) {
+                _.each(images, function(image) { %>
+                  <li>
+                    <img class="image" src="<%= image.url %>" />
+                  <% if ( typeof(image.caption)!=="undefined" ) { %>
+                    <p class="caption"><%= image.caption %>                  
+                  <% } %>
+                  </li>
+                <% }); %>
+            <% } %>
+          </ul>
+        </div>
+        <div class="flex-controls-container"></div>
+        <p class="text" itemprop="description"><%= text %></p>
       </div>
-      <div class="flex-controls-container"></div>
-      <p class="text"><%= text %></p>
     </script>
     <!-- /Work template -->
     <!-- Admin template -->

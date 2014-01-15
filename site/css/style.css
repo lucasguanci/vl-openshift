@@ -117,6 +117,10 @@ div#app-wrapper.index h4 {
 div#app-wrapper.index h1 {
   font-size: 160%;
 }
+h1#logo a {
+  color: #333333;
+  text-decoration: none;
+}
 /**
  * Index
 **/
