@@ -251,9 +251,6 @@ nav#main-nav section.other div {
 nav#main-nav section.other div a {
   display: inline;
 }
-nav#main-nav section.portfolio {
-  display: none;
-}
 /**
  * Login
 **/
