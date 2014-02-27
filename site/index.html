@@ -23,6 +23,16 @@
     <script src="js/lib/ckeditor/ckeditor.js"></script>
     <!-- google webmaster -->
     <meta name="google-site-verification" content="sfvOqM_4jeWSVpwja5ccetdFpEGYo3vfLPx08XqtBSI" />
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body>
     <!-- page content -->
@@ -304,6 +314,7 @@
     <script src="js/lib/jquery.flexslider.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone-min.js"></script>
+    <script src="js/lib/backbone.analytics.js"></script>
     <script src="js/scripts.js"></script>
 <!--    <script src="js/lib/qunit-1.11.0.js"></script> -->
 <!--    <script src="js/tests/test.js"></script> -->

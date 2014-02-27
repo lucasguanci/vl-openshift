@@ -20,7 +20,7 @@ var app = app || {};
     },
     index: function() {
       var index = new app.FrontendView();
-      this.navigate('index')
+      this.navigate('index', {trigger:true})
     },
     admin: function() {
       var self = this;
@@ -36,7 +36,7 @@ var app = app || {};
     },
     displayWork: function(title_url) {
       var frontendView = new app.FrontendView({title_url: title_url});
-      this.navigate('works/'+title_url);
+      this.navigate('works/'+title_url, {trigger:true});
     },
     setFilter: function(filter) {
       app.WorkFilter = filter;
@@ -58,7 +58,7 @@ var app = app || {};
     },
     login: function(dst) {
       var login = new app.LoginView({dst: dst});
-      this.navigate('login');
+      this.navigate('login', {trigger:true});
     }
   });
 })(jQuery);
