@@ -303,7 +303,7 @@ app.get('/logout', function(req,res) {
 
 // GET /user
 app.get('/user', function(req,res) {
-  console.log(req.user);
+  console.log("user: "+req.user);
   if ( typeof(req.user)!=='undefined' ) {
     res.json({username: req.user.username, role: req.user.role});
     console.log(req.user.username);
