@@ -16,15 +16,21 @@ var app = app || {};
       return this.$el;
     },
     login: function() {
-      var dst = this.options.dst;
-      console.log("dst: "+dst.dst);
+      var dst = {};
+      if ( this.options.dst !== "undefined" ) {
+        dst = this.options.dst;
+        this.options.dst = {};
+      }
+      console.log("login - dst: %o", dst);
+      $('input[type="hidden"]').remove();
       $hidden = $('<input/>').attr("type","hidden").attr("name","dst").attr("value",dst.dst);
       $('#login-form').append($hidden);
       return;
     },
     cancel: function(e) {
-      this.options.dst = {};
       console.log("cancelling login");
+      this.options.dst = {};
+      console.log("cancel - dst: %o",this.options.dst);      
       // cancel access to filters/preview
       app.WorkFilter = "all";
       app.Router.index();

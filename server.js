@@ -297,6 +297,10 @@ app.post('/login',
 app.get('/login', function(req,res) {
   res.redirect('/#!/login');
 });
+// GET /login
+app.get('/admin', function(req,res) {
+  res.redirect('/#!/login');
+});
 // GET /logout
 app.get('/logout', function(req,res) {
   req.logout();
