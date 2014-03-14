@@ -273,19 +273,19 @@ app.delete('/api/works/:id', function(req,res) {
 
 // POST /login
 app.post('/login',
-  passport.authenticate('local'),
+  passport.authenticate('local'), 
   function(req,res) {
     console.log(req.user.username);
     var dst = req.body.dst;
     console.log(util.inspect(req.body));
     switch (dst) {
       case "admin":
-        res.redirect('#admin');
+        res.redirect('/#!/admin');
         console.log('case admin');
         req.user.role = "admin";
         break;
       case "preview":
-        res.redirect('#filters/preview');
+        res.redirect('/#!/filters/preview');
         req.user.role = "preview";
         break;
     }
@@ -293,7 +293,7 @@ app.post('/login',
 );
 // GET /login
 app.get('/login', function(req,res) {
-  res.redirect('/#login');
+  res.redirect('/#!/login');
 });
 // GET /logout
 app.get('/logout', function(req,res) {
@@ -303,11 +303,11 @@ app.get('/logout', function(req,res) {
 
 // GET /user
 app.get('/user', function(req,res) {
-  console.log("user: "+req.user);
   if ( typeof(req.user)!=='undefined' ) {
     res.json({username: req.user.username, role: req.user.role});
-    console.log(req.user.username);
+    console.log("user: "+req.user.username);
   } else {
+    console.log("user: nobody");
     res.json({username: "nobody"});
   }
 });

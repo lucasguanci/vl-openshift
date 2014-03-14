@@ -3,7 +3,7 @@ var app = app || {};
 (function($){
   app.MenuItemView = Backbone.View.extend({
     tagName: 'li',
-    template: _.template('<a href="#/works/<%= title_url %>" id="menu-<%= id %>" class="circle menu" data-toggle="tooltip" title="<%= title %>">1</a>'),
+    template: _.template('<a href="#!/works/<%= title_url %>" id="menu-<%= id %>" class="circle menu" data-toggle="tooltip" title="<%= title %>">1</a>'),
     events: {
       'a.menu click': 'route'
     },

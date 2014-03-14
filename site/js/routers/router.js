@@ -3,10 +3,10 @@ var app = app || {};
 (function($){
   Workspace = Backbone.Router.extend({
     routes: {
-      'admin': 'admin',
-      'login/:destination': 'login',
-      'works/:title_url': 'displayWork',
-      'filters/:filter': 'setFilter',
+      '!/admin': 'admin',
+      '!/login/:destination': 'login',
+      '!/works/:title_url': 'displayWork',
+      '!/filters/:filter': 'setFilter',
       '*path': 'index'
     },
     start: function() {
@@ -20,7 +20,7 @@ var app = app || {};
     },
     index: function() {
       var index = new app.FrontendView();
-      this.navigate('index', {trigger:true})
+      this.navigate('!/index')
     },
     admin: function() {
       var self = this;
@@ -36,7 +36,7 @@ var app = app || {};
     },
     displayWork: function(title_url) {
       var frontendView = new app.FrontendView({title_url: title_url});
-      this.navigate('works/'+title_url, {trigger:true});
+      this.navigate('!/works/'+title_url);
     },
     setFilter: function(filter) {
       app.WorkFilter = filter;
@@ -58,7 +58,7 @@ var app = app || {};
     },
     login: function(dst) {
       var login = new app.LoginView({dst: dst});
-      this.navigate('login', {trigger:true});
+      this.navigate('!/login');
     }
   });
 })(jQuery);
