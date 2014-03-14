@@ -126,17 +126,19 @@ passport.deserializeUser(function(id, done) {
 passport.use(new LocalStrategy(
  function(username, password, done) {
    User.findOne({username: username}, function(err, user) {
-     user.id = user._id;
      if (err) { return done(err); }
-     if (!user) {
+     if (user) {
+      user.id = user._id; 
+      if (!user) {
        return done(null, false, { message: 'Unknown user '+username });
-     }
-     if ( !user.validPassword(password) ) {
+      }
+      if ( !user.validPassword(password) ) {
        return done(null, false, { message: 'Invalid password' });
-     } else {
+      } else {
        console.log('authorized '+user.username);
        return done(null,user, { message: 'Welcome '+username });       
-     }
+      }
+     }     
    });
  }
 ));
