@@ -147,6 +147,13 @@ passport.use(new LocalStrategy(
 /**
   * RESTful API
   */
+// enable CORS
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
+
 // GET /api
 app.get( '/api', function( request, response ) {
     response.send( 'Library API is running' );

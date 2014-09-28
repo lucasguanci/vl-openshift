@@ -95,12 +95,15 @@ var app = app || {};
       this.collection = new Backbone.Collection(filtered_array);
       // apply filter
       if ( this.options.title_url===undefined ) {
-        var work = this.collection.at(0);
+        // clicking on a filter no work is displayed
+        this.renderStatic();
+        var work = "none";      
+        this.renderMenu(work);
       } else {
         var work = this.collection.findWhere({title_url: this.options.title_url});
+        this.renderStatic();
+        this.displayWork(work);
       }
-      this.renderStatic();
-      this.displayWork(work);
     },
     checkLoggedIn: function() {
       $.get('/user', function(data) {
